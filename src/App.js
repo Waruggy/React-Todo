@@ -32,18 +32,29 @@ addTodo = event => {
     } else {
         this.setState({
             todoData: [
-                this.state.todoData,
+                ...this.state.todoData,
                 {task: this.state.todo, completed: false, id: Date.now()}
             ],
             todo:''
         })
     }
 };
+
+  changeTodo = event => this.setState({ [event.target.name]: event.target.value });
+
+
+   removeCompleteTodo = event => {
+    event.preventDefault();
+    let todos = this.state.todoData.slice();
+    todos = todos.filter(todo => !todo.completed);
+    this.setState({ todoData: todos });
+  };
+
     
   render() {
     return (
-      <div className="container">
-        <h1 className="main-header">Todo List: MVP</h1>
+      <div>
+        <h2>Todo List</h2>
         <TodoList 
         data={this.state.todoData}
         strikeThru={this.strikeThru}
@@ -56,7 +67,7 @@ addTodo = event => {
           />
       </div>
     );
-  }
+  };
 }
 
 export default App;
