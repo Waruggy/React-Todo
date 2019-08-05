@@ -67,7 +67,7 @@ addTodo = event => {
           />
       </div>
     );
-  };
+  }
 }
 
 export default App;
